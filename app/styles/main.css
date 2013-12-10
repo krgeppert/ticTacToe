@@ -77,3 +77,11 @@ body {
     border-bottom: 0;
   }
 }
+.box {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px 0 5px;
+  display: inline-block;
+  border: 1px solid gray;
+  background-color: beige;
+}
