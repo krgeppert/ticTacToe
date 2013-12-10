@@ -3,10 +3,11 @@
 </div>
 
 <div class="jumbotron">
-	<p class="lead">You know what to do.</p>
+	<p class="lead" ng-show="gameOver">{{endMessage}}</p>
+	<p class="lead" ng-show="gameInProgress">{{playerMark}}'s turn.</p>
 	<div class="board">
 		<div class="row" ng-repeat="(rowIndex,row) in board track by $index">
-			<div class="box" ng-repeat="(columnIndex, box) in row track by $index" ng-click="toggle(rowIndex, columnIndex)">
+			<div class="box" ng-repeat="(columnIndex, box) in row track by $index" ng-click="gameInProgress && toggle(rowIndex, columnIndex)">
 				<span ng-show="box">{{box}}</span>
 			</div>
 		</div>
