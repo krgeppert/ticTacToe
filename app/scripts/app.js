@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('ticTacToeApp', [])
+angular.module('ticTacToeApp', [
+  'ngRoute'
+])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
