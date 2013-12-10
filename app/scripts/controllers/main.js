@@ -6,26 +6,32 @@ angular.module('ticTacToeApp')
     $scope.board;
     $scope.gameOver = false;
     var movesMade = 0;
+    $scope.score = [0,0];
+    $scope.gameHasBeenPlayedBefore = false;
 
     $scope.play = function(){
-      $scope.board = new Board(3)
+      $scope.gameHasBeenPlayedBefore = true;
+      $scope.board = new Board(3);
       $scope.gameOver = false;
       $scope.playerMark = 'X';
       $scope.gameInProgress = true;
     };
     $scope.toggle = function(y, x){
-      $scope.board[y][x] = $scope.board[y][x] ? $scope.board[y][x] : $scope.playerMark;
-      if (movesMade++ === $scope.board.length * $scope.board.length) gameOver(false);
-      if (checkForVictory(y,x,$scope.playerMark)){
-        gameOver($scope.playerMark);
-      } else {
-        $scope.playerMark = $scope.playerMark === 'X' ? 'O' : 'X';
+      if (!$scope.board[y][x]){
+        $scope.board[y][x] =  $scope.playerMark
+        if (movesMade++ === $scope.board.length * $scope.board.length) gameOver(false);
+        if (checkForVictory(y,x,$scope.playerMark)){
+          gameOver($scope.playerMark);
+        } else {
+          $scope.playerMark = $scope.playerMark === 'X' ? 'O' : 'X';
+        }
       }
     };
     function gameOver (winner){
       $scope.gameInProgress = false;
       $scope.gameOver = true;
       if (winner){
+        winner === 'X' ? $scope.score[0]++ : $scope.score[1]++;
         $scope.endMessage = winner + '\'s Win!';
       } else {
         $scope.endMessage = 'Cat\'s Game.';

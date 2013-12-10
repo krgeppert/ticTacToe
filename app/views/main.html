@@ -3,7 +3,9 @@
 </div>
 
 <div class="jumbotron">
-	<p class="lead" ng-show="gameOver">{{endMessage}}</p>
+	<p class="lead" ng-show="gameOver"><b>{{endMessage}}</b></br>
+		<span class="score-board">X's: {{score[0]}} vs. O's: {{score[1]}}</span>
+	</p>
 	<p class="lead" ng-show="gameInProgress">{{playerMark}}'s turn.</p>
 	<div class="board">
 		<div class="row" ng-repeat="(rowIndex,row) in board track by $index">
@@ -17,5 +19,5 @@
 
 
 <div class="footer">
-	<p>Built by Kyle Gepppert. You should hire me!</p>
+	<p>Built by Kyle Gepppert.</p>
 </div>
