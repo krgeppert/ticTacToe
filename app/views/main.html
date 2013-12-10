@@ -6,7 +6,10 @@
 	<p class="lead" ng-show="gameOver"><b>{{endMessage}}</b></br>
 		<span class="score-board">X's: {{score[0]}} vs. O's: {{score[1]}}</span>
 	</p>
-	<p class="lead" ng-show="gameInProgress">{{playerMark}}'s turn.</p>
+	<p class="lead" ng-show="gameInProgress">
+		<span>{{playerMark}}'s turn.</span>
+		<span><a class="btn-xs btn-default" ng-click="undoMove()" ng-show="undoAllowed">Undo</a></span>
+	</p>
 	<div class="board">
 		<div class="row" ng-repeat="(rowIndex,row) in board track by $index">
 			<div class="box" ng-repeat="(columnIndex, box) in row track by $index" ng-click="gameInProgress && toggle(rowIndex, columnIndex)">

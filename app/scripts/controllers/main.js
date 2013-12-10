@@ -2,14 +2,20 @@
 
 angular.module('ticTacToeApp')
   .controller('MainCtrl', function ($scope, Board) {
+    var undoTimer = 3;
+    var movesMade = 0;
+    var timer;
+    var lastMove;
+
     $scope.gameInProgress = false;
     $scope.board;
     $scope.gameOver = false;
-    var movesMade = 0;
     $scope.score = [0,0];
     $scope.gameHasBeenPlayedBefore = false;
+    $scope.undoAllowed = false;
 
     $scope.play = function(){
+      movesMade = 0;
       $scope.gameHasBeenPlayedBefore = true;
       $scope.board = new Board(3);
       $scope.gameOver = false;
@@ -17,9 +23,11 @@ angular.module('ticTacToeApp')
       $scope.gameInProgress = true;
     };
     $scope.toggle = function(y, x){
+      lastMove = [y,x];
       if (!$scope.board[y][x]){
+        resetUndoButton();
         $scope.board[y][x] =  $scope.playerMark
-        if (movesMade++ === $scope.board.length * $scope.board.length) gameOver(false);
+        if (++movesMade === $scope.board.length * $scope.board.length) gameOver(false);
         if (checkForVictory(y,x,$scope.playerMark)){
           gameOver($scope.playerMark);
         } else {
@@ -27,7 +35,22 @@ angular.module('ticTacToeApp')
         }
       }
     };
+    $scope.undoMove = function(){
+      movesMade--;
+      $scope.board[lastMove[0]][lastMove[1]] = 0;
+      $scope.playerMark = $scope.playerMark === 'X' ? 'O' : 'X';
+    }
+    function resetUndoButton(){
+      if (timer) clearTimeout(timer);
+      $scope.undoAllowed = true;
+      timer = setTimeout(function(){
+        $scope.undoAllowed = false;
+        $scope.$digest();
+      }, undoTimer * 1000);
+    }
     function gameOver (winner){
+      $scope.undoAllowed = false;
+      clearTimeout(timer);  
       $scope.gameInProgress = false;
       $scope.gameOver = true;
       if (winner){
