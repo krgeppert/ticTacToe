@@ -12,8 +12,8 @@
 	</p>
 	<div class="board">
 		<div class="row" ng-repeat="(rowIndex,row) in board track by $index">
-			<div class="box" ng-repeat="(columnIndex, box) in row track by $index" ng-click="gameInProgress && toggle(rowIndex, columnIndex)">
-				<span ng-show="box">{{box}}</span>
+			<div class="box" ng-class="{hoverable: !box}" ng-repeat="(columnIndex, box) in row track by $index" ng-click="gameInProgress && toggle(rowIndex, columnIndex)">
+				<span class="move-token" ng-show="box">{{box}}</span>
 			</div>
 		</div>
 	</div>

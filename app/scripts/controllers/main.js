@@ -17,7 +17,7 @@ angular.module('ticTacToeApp')
     $scope.play = function(){
       movesMade = 0;
       $scope.gameHasBeenPlayedBefore = true;
-      $scope.board = new Board(3);
+      $scope.board = new Board(8);
       $scope.gameOver = false;
       $scope.playerMark = 'X';
       $scope.gameInProgress = true;
@@ -77,93 +77,93 @@ angular.module('ticTacToeApp')
       return horizontal || verticle || posDiagonal || negDiagonal;
     }
     /// unit test for winning plays.
-    var X = 'X';
-    var O = 'O';
-    var winners = [
-      {
-        board: [
-          [X, X, X],
-          [X, X, X],
-          [X, X, X]
-        ],
-        x: 2,
-        y: 0,
-        winner: X
-      }, {
-        board: [
-          [X, 0, 0],
-          [0, X, 0],
-          [0, 0, X]
-        ],
-        x: 2,
-        y: 2,
-        winner: X
-      }, {
-        board: [
-          [X, X, O],
-          [0, 0, 0],
-          [X, X, X]
-        ],
-        x: 0,
-        y: 2,
-        winner: X
-      }, {
-        board: [
-          [0, 0, X],
-          [0, X, 0],
-          [X, 0, 0]
-        ],
-        x: 2,
-        y: 0,
-        winner: X
-      }, {
-        board: [
-          [0, 0, X],
-          [0, 0, X],
-          [0, 0, X]
-        ],
-        x: 2,
-        y: 0,
-        winner: X
-      }
-    ];
-    var losers = [{
-      board: [
-        [X, X, 0],
-        [X, X, 0],
-        [0, 0, 0]
-      ],
-      x: 1,
-      y: 1,
-      winner: X
-    }, {
-      board: [
-        [O, X, X],
-        [X, X, O],
-        [0, O, O]
-      ],
-      x: 2,
-      y: 2,
-      winner: O
-    }, {
-      board: [
-        [X, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
-      ],
-      x: 0,
-      y: 0,
-      winner: X
-    }];
+    // var X = 'X';
+    // var O = 'O';
+    // var winners = [
+    //   {
+    //     board: [
+    //       [X, X, X],
+    //       [X, X, X],
+    //       [X, X, X]
+    //     ],
+    //     x: 2,
+    //     y: 0,
+    //     winner: X
+    //   }, {
+    //     board: [
+    //       [X, 0, 0],
+    //       [0, X, 0],
+    //       [0, 0, X]
+    //     ],
+    //     x: 2,
+    //     y: 2,
+    //     winner: X
+    //   }, {
+    //     board: [
+    //       [X, X, O],
+    //       [0, 0, 0],
+    //       [X, X, X]
+    //     ],
+    //     x: 0,
+    //     y: 2,
+    //     winner: X
+    //   }, {
+    //     board: [
+    //       [0, 0, X],
+    //       [0, X, 0],
+    //       [X, 0, 0]
+    //     ],
+    //     x: 2,
+    //     y: 0,
+    //     winner: X
+    //   }, {
+    //     board: [
+    //       [0, 0, X],
+    //       [0, 0, X],
+    //       [0, 0, X]
+    //     ],
+    //     x: 2,
+    //     y: 0,
+    //     winner: X
+    //   }
+    // ];
+    // var losers = [{
+    //   board: [
+    //     [X, X, 0],
+    //     [X, X, 0],
+    //     [0, 0, 0]
+    //   ],
+    //   x: 1,
+    //   y: 1,
+    //   winner: X
+    // }, {
+    //   board: [
+    //     [O, X, X],
+    //     [X, X, O],
+    //     [0, O, O]
+    //   ],
+    //   x: 2,
+    //   y: 2,
+    //   winner: O
+    // }, {
+    //   board: [
+    //     [X, 0, 0],
+    //     [0, 0, 0],
+    //     [0, 0, 0]
+    //   ],
+    //   x: 0,
+    //   y: 0,
+    //   winner: X
+    // }];
 
-    for (var i = 0; i < winners.length; i++) {
-      $scope.board = winners[i].board;
-      if (!checkForVictory(winners[i].y, winners[i].x, winners[i].winner)) throw new Error('test failed')
-    }
-    for (var i = 0; i < losers.length; i++) {
-      $scope.board = losers[i].board;
-      if (checkForVictory(losers[i].y, losers[i].x, losers[i].winner)) throw new Error('test failed')
-    }
+    // for (var i = 0; i < winners.length; i++) {
+    //   $scope.board = winners[i].board;
+    //   if (!checkForVictory(winners[i].y, winners[i].x, winners[i].winner)) throw new Error('test failed')
+    // }
+    // for (var i = 0; i < losers.length; i++) {
+    //   $scope.board = losers[i].board;
+    //   if (checkForVictory(losers[i].y, losers[i].x, losers[i].winner)) throw new Error('test failed')
+    // }
 
   });
 
