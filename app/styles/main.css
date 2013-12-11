@@ -78,8 +78,9 @@ body {
   }
 }
 .move-token{
-  line-height: 30px;
+  line-height: 27px;
   vertical-align: top;
+  text-shadow: 0px 2px 2px #555;
 }
 .box {
   width: 30px;
